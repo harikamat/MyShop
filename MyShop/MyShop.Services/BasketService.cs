@@ -53,7 +53,7 @@ namespace MyShop.Services
             return basket;
         }
 
-        private Basket CreateNewBasket(HttpContext httpContext)
+        private Basket CreateNewBasket(HttpContextBase httpContext)
         {
             Basket basket = new Basket();
             basketContext.Insert(basket);
@@ -90,7 +90,7 @@ namespace MyShop.Services
         public void RemoveFromBasket(HttpContextBase httpContext, string productId)
         {
             Basket basket = GetBasket(httpContext, true);
-            BasketItem item = basket.BasketItems.FirstOrDefault(i => i.ProductId == productId);
+            BasketItem item = basket.BasketItems.FirstOrDefault(i => i.Id == productId);
             if (item != null)
             {
                 basket.BasketItems.Remove(item);
